@@ -17,7 +17,7 @@ struct node *newNode(int item){
     return temp;
 };
 
-// A utility function to do inorder traversal of BST
+// A utility function to do inorder traversal of BST (left, root, right)
 void inorder(struct node *root){
     if (root != NULL){
         inorder(root->left);
@@ -25,7 +25,16 @@ void inorder(struct node *root){
         inorder(root->right);
     }
 }
-
+//Function to show the BST in postorder (left, right, root)
+void postOrder(struct node *root){
+    if (root != NULL){
+        //cout<<"voy para izq: "<<root->left->key<<endl;
+        postOrder(root->left);
+        //cout<<"voy para der: "<<root->right->key<<endl;
+        postOrder(root->right);
+        printf("%d \n", root->key);
+    }
+}
 /* A utility function to insert a new node with given key in BST */
 struct node* insert(struct node* node, int key){
     /* If the tree is empty, return a new node */
@@ -119,9 +128,10 @@ int main(){
   inorder(root);
   //findNode(root, 40);
   cout<<endl;
-  del(root, 70);
+  postOrder(root);
+ /* del(root, 70);
   del(root, 40);
   del(root, 20);
-  inorder(root);
+  inorder(root);*/
     return 0;
 }
